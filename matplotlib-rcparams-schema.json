@@ -1,0 +1,293 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://matplotlib.org/stable/users/explain/customizing.html",
+  "title": "matplotlib rcParams json schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "backend": { "type": "string" },
+    "backend_fallback": { "type": "boolean", "default": true },
+    "lines": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "linewidth": { "type": "number", "default": 1.5 },
+        "linestyle": { "type": "string", "default": "-" },
+        "color": { "type": "string"},
+        "marker": { "type": "string", "default": "none" },
+        "markersize": { "type": "number" },
+        "markeredgewidth": { "type": "number" },
+        "markeredgecolor": { "oneOf": [{ "type": "string" }, { "type": ["null"] }] },
+        "markerfacecolor": { "oneOf": [{ "type": "string" }, { "type": ["null"] }] },
+        "antialiased": { "type": "boolean", "default": true },
+        "dashed_pattern": { "type": "number" },
+        "dashdot_pattern": { "type": "number" },
+        "dotted_pattern": { "type": "number" },
+        "scale_dashes": { "type": "boolean" }
+      }
+    },
+    "hatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": { "type": "string", "default": "black" },
+        "linewidth": { "type": "number", "default": 1.0 }
+      }
+    },
+    "boxplot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bootstrap": { "type": "integer" },
+        "boxprops": { "type": "object" }
+      }
+    },
+    "font": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "size": { "type": "number" },
+        "serif": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sans-serif": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "monospace": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "mathtext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fontset": { "type": "string" },
+        "fallback": { "type": "string", "default": "cm" },
+        "default": { "type": "string", "default": "it" }
+      }
+    },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facecolor": { "type": "string" },
+        "edgecolor": { "type": "string" },
+        "linewidth": { "type": "number" },
+        "grid": { "type": "boolean" },
+        "titlesize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
+        "labelsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
+        "titleweight": { "type": "string" },
+        "labelweight": { "type": "string" },
+        "prop_cycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "unicode_minus": { "type": "boolean" }
+      }
+    },
+    "figure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "figsize": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Figure width, height in inches"
+        },
+        "dpi": { "type": "number" },
+        "facecolor": { "type": "string" },
+        "edgecolor": { "type": "string" },
+        "autolayout": { "type": "boolean" },
+        "constrained_layout.use": { "type": "boolean" }
+      }
+    },
+    "grid": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": { "type": "string" },
+        "linewidth": { "type": "number" },
+        "linestyle": { "type": "string" }
+      }
+    },
+    "legend": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fontsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
+        "loc": { "type": "string" },
+        "frameon": { "type": "boolean" },
+        "fancybox": { "type": "boolean" },
+        "shadow": { "type": "boolean" },
+        "framealpha": { "type": "number" },
+        "borderaxespad": { "type": "number" },
+        "labelspacing": { "type": "number" },
+        "handlelength": { "type": "number" },
+        "handletextpad": { "type": "number" },
+        "borderpad": { "type": "number" },
+        "columnspacing": { "type": "number" }
+      }
+    },
+    "xtick": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "direction": { "type": "string", "enum": ["in", "out", "inout"] },
+        "top": { "type": "boolean" },
+        "bottom": { "type": "boolean" },
+        "labelsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
+        "color": { "type": "string" },
+        "major": {
+          "type": "object",
+          "properties": {
+            "size": { "type": "number" },
+            "width": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "minor": {
+          "type": "object",
+          "properties": {
+            "size": { "type": "number" },
+            "width": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "ytick": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "direction": { "type": "string", "enum": ["in", "out", "inout"] },
+        "left": { "type": "boolean" },
+        "right": { "type": "boolean" },
+        "labelsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
+        "color": { "type": "string" },
+        "major": {
+          "type": "object",
+          "properties": {
+            "size": { "type": "number" },
+            "width": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "minor": {
+          "type": "object",
+          "properties": {
+            "size": { "type": "number" },
+            "width": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "savefig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dpi": { "type": "number" },
+        "facecolor": { "type": "string" },
+        "edgecolor": { "type": "string" },
+        "format": { "type": "string", "default": "png" },
+        "bbox": { "type": "string" },
+        "pad_inches": { "type": "number", "default": 0.1 },
+        "transparent": { "type": "boolean", "default": false }
+      }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": { "type": "string" },
+        "usetex": { "type": "boolean" },
+        "hinting": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cmap": { "type": "string" },
+        "interpolation": { "type": "string" },
+        "origin": { "type": "string" },
+        "aspect": { "oneOf": [{ "type": "string" }, { "type": "number" }] }
+      }
+    },
+    "contour": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negative_linestyle": { "type": "string" }
+      }
+    },
+    "polar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theta_direction": { "type": "number" },
+        "theta_offset": { "type": "number" }
+      }
+    },
+    "errorbar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capsize": { "type": "number" }
+      }
+    },
+    "hist": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bins": { "oneOf": [{ "type": "integer" }, { "type": "string" }] }
+      }
+    },
+    "stackplot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseline": { "type": "string" }
+      }
+    },
+    "toolbar": {
+      "type": "string"
+    },
+    "interactive": { "type": "boolean" }
+  },
+  "definitions": {},
+  "examples": [
+    {
+      "figure": { "figsize": [8, 6], "dpi": 100, "autolayout": true },
+      "axes": { "grid": true, "edgecolor": "#333333", "prop_cycle": { "color": ["#1f77b4", "#ff7f0e"] } },
+      "lines": { "linewidth": 2.0, "markersize": 6 },
+      "font": { "size": 12, "family": ["sans-serif"], "sans-serif": ["DejaVu Sans", "Arial"] },
+      "legend": { "fontsize": "small", "loc": "best", "frameon": false },
+      "xtick": { "direction": "in", "labelsize": "small", "major": { "size": 5, "width": 0.8 } },
+      "ytick": { "direction": "in", "labelsize": "small" },
+      "savefig": { "dpi": 300, "bbox": "tight", "format": "png" },
+      "text": { "color": "#333333" }
+    }
+  ]
+}
