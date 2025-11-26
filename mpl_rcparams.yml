@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=/home/deepanshu/matplotlib-rcparams-schema.json
+axes:
+  linewidth: 1.5
+
+font:
+  family: ["sans-serif"]
+  sans-serif: ["DejaVu Sans", "Arial", "Helvetica"]
+
+mathtext:
+  fontset: "cm"
+
+savefig:
+  pad_inches: 1e-2
