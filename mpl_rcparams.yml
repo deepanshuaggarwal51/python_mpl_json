@@ -1,13 +1,20 @@
-# yaml-language-server: $schema=/home/deepanshu/matplotlib-rcparams-schema.json
+# yaml-language-server: $schema=matplotlib-rcparams-schema.json
+
+figure:
+  figsize: [8, 6]
+  dpi: "high"
+  autolayout: true
+
 axes:
-  linewidth: 1.5
+  titlesize: large
+  labelsize: 12
+  grid: true
 
-font:
-  family: ["sans-serif"]
-  sans-serif: ["DejaVu Sans", "Arial", "Helvetica"]
-
-mathtext:
-  fontset: "cm"
+lines:
+  linewidth: 2.5
+  linestyle: "--"
+  color: '#1f77b4'
 
 savefig:
+  bbox: "tight"
   pad_inches: 1e-2

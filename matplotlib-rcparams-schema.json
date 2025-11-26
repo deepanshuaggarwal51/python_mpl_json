@@ -1,48 +1,130 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://matplotlib.org/stable/users/explain/customizing.html",
-  "title": "matplotlib rcParams json schema",
+  "$id": "matplotlib-rcparams-schema.json",
+  "title": "Matplotlib rcParams json schema",
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "backend": { "type": "string" },
-    "backend_fallback": { "type": "boolean", "default": true },
+    "backend": {
+      "description": "The default backend.",
+      "type": "string"
+    },
+    "backend_fallback": {
+      "type": "boolean",
+      "default": true
+    },
     "lines": {
+      "description": "See https://matplotlib.org/stable/api/artist_api.html#module-matplotlib.lines for more information on line properties.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "linewidth": { "type": "number", "default": 1.5 },
-        "linestyle": { "type": "string", "default": "-" },
-        "color": { "type": "string"},
-        "marker": { "type": "string", "default": "none" },
-        "markersize": { "type": "number" },
-        "markeredgewidth": { "type": "number" },
-        "markeredgecolor": { "oneOf": [{ "type": "string" }, { "type": ["null"] }] },
-        "markerfacecolor": { "oneOf": [{ "type": "string" }, { "type": ["null"] }] },
-        "antialiased": { "type": "boolean", "default": true },
-        "dashed_pattern": { "type": "number" },
-        "dashdot_pattern": { "type": "number" },
-        "dotted_pattern": { "type": "number" },
-        "scale_dashes": { "type": "boolean" }
+        "linewidth": {
+          "description": "line width in points",
+          "type": "number",
+          "default": 1.5
+        },
+        "linestyle": {
+          "description": "solid line",
+          "type": "string",
+          "default": "-"
+        },
+        "color": {
+          "description": "has no affect on plot(); see axes.prop_cycle",
+          "type": "string"
+        },
+        "marker": {
+          "description": "the default marker",
+          "type": "string",
+          "default": "none"
+        },
+        "markerfacecolor": {
+          "description": "the default marker face color",
+          "oneOf": [{"type": "string"}, {"type": ["null"]}],
+          "default": "auto"
+        },
+        "markeredgecolor": {
+          "description": "the default marker edge color",
+          "oneOf": [{"type": "string"}, {"type": ["null"]}],
+          "default": "auto"
+        },
+        "markeredgewidth": {
+          "description": "the line width around the marker symbol",
+          "type": "number",
+          "default": 1.0
+        },
+        "markersize": {
+          "description": "marker size, in points",
+          "type": "number",
+          "default": 6
+        },
+        "dash_joinstyle": {
+          "description": "{miter, round, bevel}",
+          "type": "string",
+          "default": "round"
+        },
+        "dash_capstyle": {
+          "description": "{butt, round, projecting}",
+          "type": "string",
+          "default": "butt"
+        },
+        "solid_joinstyle": {
+          "description": "{miter, round, bevel}",
+          "type": "string",
+          "default": "round"
+        },
+        "solid_capstyle": {
+          "description": "{butt, round, projecting}",
+          "type": "string",
+          "default": "projecting"
+        },
+        "antialiased": {
+          "description": "render lines in antialiased (no jaggies)",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "patch": {
+      "description": "Patches are graphical objects that fill 2D space, like polygons or circles.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "linewidth": {
+          "description": "edge width in points.",
+          "type": "number",
+          "default": 1.0
+        },
+        "antialiased": {
+          "description": "render patches in antialiased (no jaggies)",
+          "type": "boolean",
+          "default": true
+        }
       }
     },
     "hatch": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "color": { "type": "string", "default": "black" },
-        "linewidth": { "type": "number", "default": 1.0 }
+        "color": {
+          "type": "string",
+          "default": "black"
+        },
+        "linewidth": {
+          "type": "number",
+          "default": 1.0
+        }
       }
     },
     "boxplot": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "bootstrap": { "type": "integer" },
-        "boxprops": { "type": "object" }
+        "bootstrap": {"type": "integer"},
+        "boxprops": {"type": "object"}
       }
     },
     "font": {
+      "description": "The font properties used by `text.Text`. See https://matplotlib.org/stable/api/font_manager_api.html for more information on font properties.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -55,42 +137,145 @@
             }
           ]
         },
-        "size": { "type": "number" },
+        "weight": {
+          "description": "weight of the font",
+          "oneOf": [{"type": "string"}, {"type": "number"}]
+        },
+        "size": {
+          "description": "this is the default font size for text, given in points. 10 pt is the standard value.",
+          "type": "number"
+        },
         "serif": {
+          "description": "(e.g., Times)",
           "type": "array",
-          "items": { "type": "string" }
+          "items": {"type": "string"}
         },
         "sans-serif": {
+          "description": "(e.g., Helvetica)",
           "type": "array",
-          "items": { "type": "string" }
+          "items": {"type": "string"}
         },
         "monospace": {
+          "description": "(e.g., Courier)",
           "type": "array",
-          "items": { "type": "string" }
+          "items": {"type": "string"}
         }
       }
     },
-    "mathtext": {
+    "text": {
+      "description": "The text properties used by `text.Text`. See https://matplotlib.org/stable/api/artist_api.html#module-matplotlib.text for more information on text properties",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "fontset": { "type": "string" },
-        "fallback": { "type": "string", "default": "cm" },
-        "default": { "type": "string", "default": "it" }
+        "color": {"type": "string"},
+        "usetex": {
+          "description": "use latex for all text handling",
+          "type": "boolean",
+          "default": false
+        },
+        "hinting": { "type": "string" }
+      }
+    },
+    "mathtext": {
+      "description": "The following settings allow you to select the fonts in math mode.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fontset": {
+          "description": "Should be 'dejavusans' (default), 'dejavuserif', 'cm' (Computer Modern), 'stix', 'stixsans' or 'custom'",
+          "type": "string",
+          "default": "dejavusans"
+        },
+        "fallback": {
+          "description": "Select fallback font from ['cm' (Computer Modern), 'stix', 'stixsans'] when a symbol cannot be found in one of the custom math fonts.",
+          "type": "string",
+          "default": "cm"
+        },
+        "default": {
+          "description": "The default font to use for math.",
+          "type": "string",
+          "default": "it"
+        }
       }
     },
     "axes": {
+      "description": "See https://matplotlib.org/stable/api/axes_api.html#module-matplotlib.axes",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "facecolor": { "type": "string" },
-        "edgecolor": { "type": "string" },
-        "linewidth": { "type": "number" },
-        "grid": { "type": "boolean" },
-        "titlesize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
-        "labelsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
-        "titleweight": { "type": "string" },
-        "labelweight": { "type": "string" },
+        "facecolor": {
+          "description": "axes background color",
+          "type": "string",
+          "default": "white"
+        },
+        "edgecolor": {
+          "description": "axes edge color",
+          "type": "string",
+          "default": "black"
+        },
+        "linewidth": {
+          "description": "edge line width",
+          "type": "number",
+          "default": 0.8
+        },
+        "grid": {
+          "description": "display grid or not",
+          "type": "boolean",
+          "default": false
+        },
+        "titlelocation": {
+          "description": "alignment of the title: {left, right, center}",
+          "type": "string",
+          "default": "center"
+        },
+        "titlesize": {
+          "description": "font size of the axes title",
+          "oneOf": [{"type": "string"}, {"type": "number"}],
+          "default": "large"
+        },
+        "titleweight": {
+          "description": "font weight of title",
+          "type": "string",
+          "default": "normal"
+        },
+        "titlecolor": {
+          "description": "color of the axes title, auto falls back to text.color as default value",
+          "type": "string"
+        },
+        "titlepad": {
+          "description": "pad between axes and title in points",
+          "type": "number",
+          "default": 6.0
+        },
+        "labelsize": {
+          "description": "font size of the x and y labels",
+          "oneOf": [{"type": "string"}, {"type": "number"}],
+          "default": "medium"
+        },
+        "labelpad": {
+          "description": "space between label and axis",
+          "type": "number",
+          "default": 4.0
+        },
+        "labelweight": {
+          "description": "weight of the x and y labels",
+          "type": "string"
+        },
+        "labelcolor": {
+          "description": "color of the x and y labels",
+          "type": "string"
+        },
+        "spines": {
+          "description": "display axis spines",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "left": {"type": "boolean"},
+            "bottom": {"type": "boolean"},
+            "top": {"type": "boolean"},
+            "right": {"type": "boolean"}
+          }
+        },
         "prop_cycle": {
           "type": "object",
           "additionalProperties": false,
@@ -104,75 +289,88 @@
         "unicode_minus": { "type": "boolean" }
       }
     },
-    "figure": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "figsize": {
-          "type": "array",
-          "items": { "type": "number" },
-          "minItems": 2,
-          "maxItems": 2,
-          "description": "Figure width, height in inches"
-        },
-        "dpi": { "type": "number" },
-        "facecolor": { "type": "string" },
-        "edgecolor": { "type": "string" },
-        "autolayout": { "type": "boolean" },
-        "constrained_layout.use": { "type": "boolean" }
-      }
-    },
-    "grid": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "color": { "type": "string" },
-        "linewidth": { "type": "number" },
-        "linestyle": { "type": "string" }
-      }
-    },
-    "legend": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "fontsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
-        "loc": { "type": "string" },
-        "frameon": { "type": "boolean" },
-        "fancybox": { "type": "boolean" },
-        "shadow": { "type": "boolean" },
-        "framealpha": { "type": "number" },
-        "borderaxespad": { "type": "number" },
-        "labelspacing": { "type": "number" },
-        "handlelength": { "type": "number" },
-        "handletextpad": { "type": "number" },
-        "borderpad": { "type": "number" },
-        "columnspacing": { "type": "number" }
-      }
-    },
     "xtick": {
+      "description": "See https://matplotlib.org/stable/api/axis_api.html#matplotlib.axis.Tick",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "direction": { "type": "string", "enum": ["in", "out", "inout"] },
-        "top": { "type": "boolean" },
-        "bottom": { "type": "boolean" },
-        "labelsize": { "oneOf": [{ "type": "string" }, { "type": "number" }] },
-        "color": { "type": "string" },
+        "top": {
+          "description": "draw ticks on the top side",
+          "type": "boolean",
+          "default": false
+        },
+        "bottom": {
+          "description": "draw ticks on the bottom side",
+          "type": "boolean",
+          "default": true
+        },
+        "labeltop": {
+          "description": "draw label on the top",
+          "type": "boolean",
+          "default": false
+        },
+        "labelbottom": {
+          "description": "draw label on the bottom",
+          "type": "boolean",
+          "default": true
+        },
         "major": {
+          "description": "major ticks",
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "size": { "type": "number" },
-            "width": { "type": "number" }
-          },
-          "additionalProperties": false
+            "size": {
+              "description": "major tick size in points",
+              "type": "number",
+              "default": 3.5
+            },
+            "width": {
+              "description": "major tick width in points",
+              "type": "number",
+              "default": 0.8
+            },
+            "pad": {
+              "description": "distance to major tick label in points",
+              "type": "number",
+              "default": 3.5
+            },
+            "top": {"type": "boolean"},
+            "bottom": {"type": "boolean"}
+          }
         },
         "minor": {
+          "description": "minor ticks",
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "size": { "type": "number" },
-            "width": { "type": "number" }
-          },
-          "additionalProperties": false
+            "size": {"type": "number"},
+            "width": {"type": "number"},
+            "pad": {"type": "number"},
+            "visible": {"type": "boolean"},
+            "top": {"type": "boolean"},
+            "bottom": {"type": "boolean"}
+          }
+        },
+        "color": {
+          "description": "color of the ticks",
+          "type": "string",
+          "default": "black"
+        },
+        "labelsize": {
+          "description": "font size of the tick labels",
+          "oneOf": [{"type": "string"}, {"type": "number"}],
+          "default": "medium"
+        },
+        "direction": {
+          "description": "direction: {in, out, inout}",
+          "type": "string",
+          "enum": ["in", "out", "inout"],
+          "default": "out"
+        },
+        "alignment": {
+          "description": "alignment of xticks",
+          "type": "string",
+          "default": "center"
         }
       }
     },
@@ -203,36 +401,190 @@
         }
       }
     },
-    "savefig": {
+    "grid": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "dpi": { "type": "number" },
-        "facecolor": { "type": "string" },
-        "edgecolor": { "type": "string" },
-        "format": { "type": "string", "default": "png" },
-        "bbox": { "type": "string" },
-        "pad_inches": { "type": "number", "default": 0.1 },
-        "transparent": { "type": "boolean", "default": false }
+        "color": {
+          "description": "grid color",
+          "type": "string"
+        },
+        "linestyle": {
+          "description": "solid",
+          "type": "string"
+        },
+        "linewidth": {
+          "description": "in points",
+          "type": "number"
+        },
+        "alpha": {
+          "description": "transparency, between 0.0 and 1.0",
+          "type": "number"
+        }
       }
     },
-    "text": {
+    "legend": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "color": { "type": "string" },
-        "usetex": { "type": "boolean" },
-        "hinting": { "type": "string" }
+        "loc": { "type": "string" },
+        "frameon": {
+          "description": "if True, draw the legend on a background patch",
+          "type": "boolean"
+        },
+        "framealpha": {
+          "description": "legend patch transparency",
+          "type": "number"
+        },
+        "fancybox": {
+          "description": "if True, use a rounded box for the legend background, else a rectangle",
+          "type": "boolean"
+        },
+        "shadow": {
+          "description": "if True, give background a shadow effect",
+          "type": "boolean"
+        },
+        "fontsize": {
+          "oneOf": [{ "type": "string" }, { "type": "number" }]
+        },
+        "borderpad": {
+          "description": "border whitespace",
+          "type": "number"
+        },
+        "labelspacing": {
+          "description": "the vertical space between the legend entries",
+          "type": "number"
+        },
+        "handlelength": {
+          "description": "the length of the legend lines",
+          "type": "number"
+        },
+        "handleheight": {
+          "description": "the height of the legend handle",
+          "type": "number"
+        },
+        "handletextpad": {
+          "description": "the space between the legend line and legend text",
+          "type": "number"
+        },
+        "borderaxespad": {
+          "description": "the border between the axes and legend edge",
+          "type": "number"
+        },
+        "columnspacing": {
+          "description": "column separation",
+          "type": "number"
+        }
+      }
+    },
+    "figure": {
+      "description": "See https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titlesize": {
+          "description": "size of the figure title (``Figure.suptitle()``)",
+          "type": "string"
+        },
+        "titleweight": {
+          "description": "weight of the figure title",
+          "type": "string"
+        },
+        "labelsize": {
+          "description": "size of the figure label (``Figure.sup[x|y]label()``)",
+          "type": "string"
+        },
+        "labelweight": {
+          "description": "weight of the figure label",
+          "type": "string"
+        },
+        "figsize": {
+          "description": "figure width, height in inches",
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "dpi": {
+          "description": "figure dots per inch",
+          "type": "number"
+        },
+        "facecolor": {
+          "description": "figure face color",
+          "type": "string"
+        },
+        "edgecolor": {
+          "description": "figure edge color",
+          "type": "string"
+        },
+        "frameon": {
+          "description": "enable figure frame",
+          "type": "boolean"
+        },
+        "subplot": {
+          "description": "The figure subplot parameters. All dimensions are a fraction of the figure width and height.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "left": {
+              "description": "the left side of the subplots of the figure",
+              "type": "number"
+            },
+            "right": {
+              "description": "the right side of the subplots of the figure",
+              "type": "number"
+            },
+            "bottom": {
+              "description": "the bottom of the subplots of the figure",
+              "type": "number"
+            },
+            "top": {
+              "description": "the top of the subplots of the figure",
+              "type": "number"
+            },
+            "wspace": {
+              "description": "the amount of width reserved for space between subplots, expressed as a fraction of the average axis width",
+              "type": "number"
+            },
+            "hspace": {
+              "description": "The amount of height reserved for space between subplots, expressed as a fraction of the average axis height",
+              "type": "number"
+            }
+          }
+        },
+        "autolayout": {
+          "description": "When True, automatically adjust suplot parameters to make the plot fit the figure using `tight_layout`.",
+          "type": "boolean"
+        },
+        "constrained_layout.use": {
+          "description": "When True, automatically make plot elements fit on the figure. (Not compatible with `autolayout`, above).",
+          "type": "boolean" }
       }
     },
     "image": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "cmap": { "type": "string" },
-        "interpolation": { "type": "string" },
-        "origin": { "type": "string" },
-        "aspect": { "oneOf": [{ "type": "string" }, { "type": "number" }] }
+        "aspect": {
+          "description": "{equal, auto} or a number",
+          "oneOf": [{"type": "string"}, {"type": "number"}],
+          "default": "equal"
+        },
+        "interpolation": {
+          "description": "see help(imshow) for options",
+          "type": "string",
+          "default": "auto"
+        },
+        "cmap": {
+          "description": "A colormap name (plasma, magma, etc.)",
+          "type": "string",
+          "default": "viridis"
+        },
+        "origin": {
+          "type": "string",
+          "enum": ["lower", "upper"],
+          "default": "upper"
+        }
       }
     },
     "contour": {
@@ -242,26 +594,74 @@
         "negative_linestyle": { "type": "string" }
       }
     },
-    "polar": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "theta_direction": { "type": "number" },
-        "theta_offset": { "type": "number" }
-      }
-    },
     "errorbar": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "capsize": { "type": "number" }
+        "capsize": {
+          "description": "length of end cap on error bars in pixels",
+          "type": "number",
+          "default": 0
+        }
       }
     },
     "hist": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "bins": { "oneOf": [{ "type": "integer" }, { "type": "string" }] }
+        "bins": {
+          "description": "The default number of histogram bins or 'auto'.",
+          "oneOf": [{"type": "integer"}, {"type": "string"}],
+          "default": 10
+        }
+      }
+    },
+    "savefig": {
+      "description": "The default savefig parameters can be different from the display parameters e.g., you may want a higher resolution, or to make the figure background white",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dpi": {
+          "description": "figure dots per inch or 'figure'",
+          "oneOf": [{"type": "string"}, {"type": "number"}],
+          "default": "figure"
+        },
+        "facecolor": {"type": "string"},
+        "edgecolor": {"type": "string" },
+        "format": {
+          "type": "string",
+          "enum": ["png", "ps", "pdf", "svg"],
+          "default": "png"
+        },
+        "bbox": {
+          "description": "{tight, standard} 'tight' is incompatible with generating frames for animation",
+          "type": "string",
+          "enum": ["tight", "standard"],
+          "default": "standard"
+        },
+        "pad_inches": {
+          "description": "padding to be used, when bbox is set to 'tight'",
+          "type": "number",
+          "default": 0.1
+        },
+        "transparent": {
+          "description": "whether figures are saved with a transparent background by default",
+          "type": "boolean",
+          "default": false
+        },
+        "orientation" : {
+          "description": "orientation of saved figure, for PostScript output only",
+          "type": "string",
+          "default": "portrait"
+        }
+      }
+    },
+    "polar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theta_direction": { "type": "number" },
+        "theta_offset": { "type": "number" }
       }
     },
     "stackplot": {
