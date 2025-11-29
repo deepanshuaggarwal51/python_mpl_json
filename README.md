@@ -12,9 +12,13 @@ The goal is to let you write your Matplotlib configuration in **YAML**, get IDEâ
 
 ### Directory layout
 ```code
+.
+|- load_rcparams.py                     # helper script
 |- matplotlib-rcparams-schema.json      # the JSON Schema file
 |- mpl_rcparams.yml                     # sample YAML configuration
 |- README.md                            # (this file)
+
+1 directory, 4 files
 ```
 
 ### Writing the rcParams YAML

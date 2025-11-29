@@ -1,0 +1,22 @@
+# ~/Documents/mpl_rcparams.toml
+#:schema https://raw.githubusercontent.com/deepanshuaggarwal51/python_mpl_json/refs/heads/main/matplotlib-rcparams-schema.json
+[axes]
+linewidth = 1.5
+
+[font]
+family = "sans-serif"
+sans-serif = ["Dejavu Sans", "Arial", "Helvetica"]
+
+[mathtext]
+fontset = "cm"
+
+[savefig]
+dpi = 150
+bbox = "tight"
+pad_inches = 1e-2
+
+[xtick]
+labelsize = 12
+
+[ytick]
+labelsize = 12
