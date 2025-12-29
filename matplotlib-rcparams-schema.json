@@ -168,12 +168,30 @@
       "additionalProperties": false,
       "properties": {
         "color": {"type": "string"},
+        "hinting": {
+          "enum": ["default", "no_autohint", "force_autohint", "no_hinting"],
+          "default": "force_autohint"
+        },
+        "antialiased": {
+          "description": "If True (default), the text will be antialiased. This only affects raster outputs.",
+          "type": "boolean",
+          "default": true
+        },
+        "parse_math": {
+          "description": "Use mathtext if there is an even number of unescaped dollar signs.",
+          "type": "boolean",
+          "default": true
+        },
         "usetex": {
-          "description": "use latex for all text handling",
+          "description": "Use latex for all text handling.",
           "type": "boolean",
           "default": false
         },
-        "hinting": { "type": "string" }
+        "latex.preamble": {
+          "type": "string",
+          "title": "LaTeX Preamble",
+          "description": "Preamble is a single line of LaTeX code that will be passed on to the LaTeX system. It may contain any code that is valid for the LaTeX 'preamble', i.e. between the 'documentclass' and 'begin{document}' statements."
+        }
       }
     },
     "mathtext": {
@@ -226,6 +244,7 @@
         "titlelocation": {
           "description": "alignment of the title: {left, right, center}",
           "type": "string",
+          "enum": ["left", "right", "center"],
           "default": "center"
         },
         "titlesize": {

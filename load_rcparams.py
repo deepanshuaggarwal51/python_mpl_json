@@ -7,10 +7,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import yaml
 
-# loading the yaml file and converting as a python's dictionary
+# loading the yaml file and converting as a python dictionary
 mpl_yaml_file = Path("mpl_rcparams.yml")
 rcparams = yaml.safe_load(mpl_yaml_file.read_text())
 
-# changing the matplotlib rcParams
+# updating the matplotlib rcParams
 for k in rcparams:
     plt.rc(group=k, **rcparams[k])
